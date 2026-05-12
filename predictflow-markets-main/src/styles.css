@@ -1,0 +1,185 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-yes: var(--yes);
+  --color-yes-foreground: var(--yes-foreground);
+  --color-yes-glow: var(--yes-glow);
+  --color-no: var(--no);
+  --color-no-foreground: var(--no-foreground);
+  --color-no-glow: var(--no-glow);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Deep slate / charcoal base */
+  --background: oklch(0.16 0.02 254);
+  --foreground: oklch(0.97 0.01 250);
+
+  --surface: oklch(0.20 0.022 254);
+  --surface-elevated: oklch(0.235 0.025 254);
+
+  --card: oklch(0.21 0.024 254 / 65%);
+  --card-foreground: oklch(0.97 0.01 250);
+
+  --popover: oklch(0.20 0.022 254);
+  --popover-foreground: oklch(0.97 0.01 250);
+
+  --primary: oklch(0.85 0.18 195);
+  --primary-foreground: oklch(0.16 0.02 254);
+
+  --secondary: oklch(0.27 0.025 254);
+  --secondary-foreground: oklch(0.97 0.01 250);
+
+  --muted: oklch(0.24 0.022 254);
+  --muted-foreground: oklch(0.68 0.025 250);
+
+  --accent: oklch(0.30 0.04 254);
+  --accent-foreground: oklch(0.97 0.01 250);
+
+  --destructive: oklch(0.65 0.24 20);
+  --destructive-foreground: oklch(0.98 0.01 250);
+
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.85 0.18 195);
+
+  /* Yes = neon cyan, No = coral pink */
+  --yes: oklch(0.85 0.18 195);
+  --yes-foreground: oklch(0.14 0.02 254);
+  --yes-glow: oklch(0.85 0.18 195 / 35%);
+
+  --no: oklch(0.72 0.22 18);
+  --no-foreground: oklch(0.14 0.02 254);
+  --no-glow: oklch(0.72 0.22 18 / 35%);
+
+  --gradient-bg: radial-gradient(
+      ellipse at top left,
+      oklch(0.30 0.10 200 / 25%),
+      transparent 55%
+    ),
+    radial-gradient(ellipse at top right, oklch(0.30 0.12 18 / 18%), transparent 55%),
+    linear-gradient(180deg, oklch(0.15 0.02 254), oklch(0.13 0.02 254));
+
+  --gradient-yes: linear-gradient(135deg, oklch(0.88 0.18 195), oklch(0.78 0.16 180));
+  --gradient-no: linear-gradient(135deg, oklch(0.75 0.22 18), oklch(0.65 0.24 5));
+
+  --shadow-glow-yes: 0 0 24px oklch(0.85 0.18 195 / 35%);
+  --shadow-glow-no: 0 0 24px oklch(0.72 0.22 18 / 35%);
+  --shadow-card: 0 8px 32px oklch(0 0 0 / 35%);
+
+  --sidebar: oklch(0.18 0.022 254);
+  --sidebar-foreground: oklch(0.97 0.01 250);
+  --sidebar-primary: oklch(0.85 0.18 195);
+  --sidebar-primary-foreground: oklch(0.16 0.02 254);
+  --sidebar-accent: oklch(0.26 0.025 254);
+  --sidebar-accent-foreground: oklch(0.97 0.01 250);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.85 0.18 195);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    background: var(--gradient-bg);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family:
+      "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: oklch(0.21 0.024 254 / 55%);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid oklch(1 0 0 / 8%);
+  }
+
+  .glass-strong {
+    background: oklch(0.22 0.025 254 / 78%);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid oklch(1 0 0 / 10%);
+  }
+
+  .glow-yes {
+    box-shadow: var(--shadow-glow-yes);
+  }
+  .glow-no {
+    box-shadow: var(--shadow-glow-no);
+  }
+
+  .text-yes {
+    color: var(--color-yes);
+  }
+  .text-no {
+    color: var(--color-no);
+  }
+  .bg-yes {
+    background-color: var(--color-yes);
+  }
+  .bg-no {
+    background-color: var(--color-no);
+  }
+  .gradient-yes {
+    background: var(--gradient-yes);
+  }
+  .gradient-no {
+    background: var(--gradient-no);
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+}
+
